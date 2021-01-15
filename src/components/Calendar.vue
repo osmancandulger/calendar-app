@@ -1,9 +1,12 @@
 <template>
   <h1 class="calendar-title">Calendar</h1>
   <div class="title-num">
-     <p>{{ currentMonth }}</p>
+    <div class="current-date">
+    <p>{{ currentMonth }}</p>
+        <p>{{ currentYear }}</p>
+        </div>
+
     <section class="days">
-     
       <p class="days-text" v-for="day in days" :key="day">
         {{ day }}
       </p>
@@ -21,7 +24,10 @@
 export default {
   data() {
     return {
-      currentMonth: new Date().getMonth(),
+      currentMonth: new Date().toLocaleString("default", {
+        month: "long",
+      }),
+      currentYear: new Date().getFullYear(),
       days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     };
   },
