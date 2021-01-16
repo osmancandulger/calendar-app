@@ -17,8 +17,9 @@
 
       <p
         class="days-num"
-        v-for="num in daysInMonth(currentYear, currentMonth)"
+        v-for="num in daysInMonth()"
         :key="num"
+        :class="currentDateClass(num)"
       >
         {{ num }}
       </p>
@@ -34,24 +35,43 @@
 export default {
   data() {
     return {
+      currentDate: new Date().getUTCDate(),
       currentMonth: new Date().getMonth(),
-
       currentYear: new Date().getFullYear(),
       days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     };
   },
   methods: {
-    daysInMonth(year, month) {
-      return new Date(year, month + 1, 0).getDate();
+    daysInMonth() {
+      return new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
     },
     startDay() {
       return new Date(this.currentYear, this.currentMonth, 1).getDay();
     },
     next() {
-      this.currentMonth++;
+      if (this.currentMonth === 11) {
+        this.currentMonth = 0;
+        this.currentYear++;
+      } else {
+        this.currentMonth++;
+      }
     },
     previous() {
-      this.currentMonth--;
+      if (this.currentMonth === 0) {
+        this.currentMonth = 11;
+        this.currentYear--;
+      } else {
+        this.currentMonth--;
+      }
+    },
+    currentDateClass(num) {
+      const calenderhDate = new Date(
+        this.currentYear,
+        this.currentMonth,
+        num
+      ).toDateString();
+      const currentFullDate = new Date().toDateString();
+      return calenderhDate === currentFullDate ? "current-day" : "";
     },
   },
   computed: {
