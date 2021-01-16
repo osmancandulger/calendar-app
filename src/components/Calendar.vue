@@ -1,9 +1,13 @@
 <template>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;800&display=swap"
+    rel="stylesheet"
+  />
   <h1 class="calendar-title">Calendar</h1>
   <div class="title-num">
     <div class="current-date">
-      <p>{{ currentMonthName }}</p>
-      <p>{{ currentYear }}</p>
+      <p class="current-month">{{ currentMonthName }}</p>
+      <p class="current-year"> {{ currentYear }}</p>
     </div>
 
     <section class="days">
@@ -14,7 +18,6 @@
 
     <section class="days-num-section">
       <p class="days-num" v-for="num in startDay()" :key="num"></p>
-
       <p
         class="days-num"
         v-for="num in daysInMonth()"
