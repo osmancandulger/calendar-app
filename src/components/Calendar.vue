@@ -24,8 +24,8 @@
       </p>
     </section>
     <section class="navigator">
-      <button class="nav-button">Previous</button>
-      <button class="nav-button">Next</button>
+      <button class="nav-button" @click="previous">Previous</button>
+      <button class="nav-button" @click="next">Next</button>
     </section>
   </div>
 </template>
@@ -34,20 +34,34 @@
 export default {
   data() {
     return {
-      currentMonth: new Date().getMonth() + 1,
-      currentMonthName: new Date().toLocaleString("default", {
-        month: "long",
-      }),
+      currentMonth: new Date().getMonth(),
+
       currentYear: new Date().getFullYear(),
       days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     };
   },
   methods: {
     daysInMonth(year, month) {
-      return new Date(year, month, 0).getDate();
+      return new Date(year, month + 1, 0).getDate();
     },
     startDay() {
-      return new Date(this.currentYear, this.currentMonth - 1, 1).getDay();
+      return new Date(this.currentYear, this.currentMonth, 1).getDay();
+    },
+    next() {
+      this.currentMonth++;
+    },
+    previous() {
+      this.currentMonth--;
+    },
+  },
+  computed: {
+    currentMonthName() {
+      return new Date(this.currentYear, this.currentMonth).toLocaleString(
+        "default",
+        {
+          month: "long",
+        }
+      );
     },
   },
 };
