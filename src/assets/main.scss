@@ -76,3 +76,18 @@ body {
     color: #2e2d2d;
   }
 }
+
+.navigator {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+
+  .nav-button {
+    padding: 6px;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+}

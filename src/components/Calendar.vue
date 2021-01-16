@@ -23,6 +23,10 @@
         {{ num }}
       </p>
     </section>
+    <section class="navigator">
+      <button class="nav-button">Previous</button>
+      <button class="nav-button">Next</button>
+    </section>
   </div>
 </template>
 
